@@ -8,6 +8,8 @@ public class SendAppValue extends SendValue {
 
     private String device_token;
 
+    private String productId;
+
     public String getType() {
         return type;
     }
@@ -22,6 +24,14 @@ public class SendAppValue extends SendValue {
 
     public void setDevice_token(String device_token) {
         this.device_token = device_token;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
 }

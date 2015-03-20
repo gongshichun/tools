@@ -69,7 +69,7 @@ public class MessageRegressionQueue {
 
                 String oldTimeStamp = value.getTimeStamp();
                 //本次发送
-                if (TimeUtils.isSend(timeStamp, oldTimeStamp, GlobalConst.MILLISECOND)) {
+                if (TimeUtils.isSend(timeStamp, oldTimeStamp, 0)) {
                     messageList.add(value);
                 }
                 //重新放入等待下次发送

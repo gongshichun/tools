@@ -66,6 +66,13 @@ public class MessageSendCenter {
      * @throws MyException
      */
     public void send(MessageSendValue messageSendValue, boolean filterFlag) throws MyException {
+        //消息类型
+        String message = messageSendValue.getMessage();
+        //消息不能超过304个字符
+        if (message.getBytes().length > MAXLEN) {
+            return;
+        }
+
         //发送规则过滤
         if (filterFlag) {
             MessageSendRule rule = new MessageSendRule();
@@ -89,7 +96,8 @@ public class MessageSendCenter {
                 new NameValuePair(config.getUserNameParameter(), config.getUserName()),
                 new NameValuePair(config.getPasswordParameter(), config.getPassword()),
                 new NameValuePair(config.getMobileParameter(), messageSendValue.getPhoneNumber()),
-                new NameValuePair("msg", messageSendValue.getMessage() + config.getSuffix())};
+                new NameValuePair(config.getMessageParameter(), messageSendValue.getMessage()
+                    + config.getSuffix())};
 
         //设置请求
         post.setRequestBody(data);
@@ -128,14 +136,6 @@ public class MessageSendCenter {
      */
     private class MessageSendRule {
         public boolean filter(MessageSendValue messageSendValue) {
-            //消息类型
-            String message = messageSendValue.getMessage();
-
-            //消息不能超过340个字符
-            if (message.getBytes().length > MAXLEN) {
-                return false;
-            }
-
             //本次发送短信中同一号码不能只能发送一次
             if (!registerCenter.isSend(messageSendValue)) {
                 //放入缓存队列，等待下次发送

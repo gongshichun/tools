@@ -59,6 +59,9 @@ public class MessageRegisterQueue {
             //获取连接
             jedis = jedisManager.getResource();
 
+            //获取Redis index
+            jedis.select(config.getRedisIndex());
+
             value =
                 gson.fromJson(
                     jedis.hget(GlobalConst.MESSAGE_CACHE_REGISTER, sendValue.getPhoneNumber()),

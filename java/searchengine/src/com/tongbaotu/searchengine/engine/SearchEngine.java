@@ -213,9 +213,8 @@ public class SearchEngine extends Thread {
                     appValue.setDevice_token(device_token);
                     appValue.setMessage(message);
                     appValue.setMessageBatchId(messageBatchId);
-                    appValue.setType(GlobalConst.TARGETTYPE_IOS == targetType
-                        ? GlobalConst.DEVICE_TYPE_IOS
-                        : GlobalConst.DEVICE_TYPE_ANDROID);
+                    appValue.setType(String.valueOf(targetType));
+                    appValue.setProductId(productId);
 
                     sendList.add(appValue);
 
@@ -223,7 +222,6 @@ public class SearchEngine extends Thread {
             } finally {
                 mysqlManager.close(conn);
             }
-
         }
 
         /**
@@ -267,15 +265,24 @@ public class SearchEngine extends Thread {
                     int customer_id = rs.getInt(1);
                     String phoneNumber = rs.getString(2);
 
-                    SendMessageValue messageValue = new SendMessageValue();
-                    messageValue.setCustomer_id(customer_id);
-                    messageValue.setMessage(message);
-                    messageValue.setMessageBatchId(messageBatchId);
-                    if (targetType == GlobalConst.TARGETTYPE_SMS) {
-                        messageValue.setPhonenumber(phoneNumber);
-                    }
+                    if (targetType == GlobalConst.TARGETTYPE_SYSTME) {
+                        SendAppValue appValue = new SendAppValue();
+                        appValue.setCustomer_id(customer_id);
+                        appValue.setDevice_token("");
+                        appValue.setMessage(message);
+                        appValue.setMessageBatchId(messageBatchId);
+                        appValue.setType(String.valueOf(targetType));
+                        appValue.setProductId(productId);
 
-                    sendList.add(messageValue);
+                        sendList.add(appValue);
+                    } else {
+                        SendMessageValue sendValue = new SendMessageValue();
+                        sendValue.setCustomer_id(customer_id);
+                        sendValue.setMessage(message);
+                        sendValue.setMessageBatchId(messageBatchId);
+                        sendValue.setPhoneNumber(phoneNumber);
+                        sendList.add(sendValue);
+                    }
 
                 }
             } finally {

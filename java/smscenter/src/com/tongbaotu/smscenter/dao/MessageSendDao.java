@@ -19,7 +19,7 @@ public class MessageSendDao {
     private static MySQLManager manager = MySQLManager.getInstance();
 
     private static final String INSERT_MESSAGE =
-        "INSERT INTO tb_message (customer_id, message_batch_id, content, tearget, create_time)"
+        "INSERT INTO tb_message (customer_id, message_batch_id, content, target, create_time)"
             + " VALUES(?, ?, ?, ?, ?)";
 
     private static MessageSendDao dao = new MessageSendDao();

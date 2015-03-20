@@ -4,13 +4,13 @@ package com.tongbaotu.searchengine.pojo;
  * @author Tim
  */
 public class SendMessageValue extends SendValue {
-    private String phonenumber;
+    private String phoneNumber;
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

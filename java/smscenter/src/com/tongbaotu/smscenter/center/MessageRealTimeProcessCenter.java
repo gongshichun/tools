@@ -51,7 +51,7 @@ public class MessageRealTimeProcessCenter extends Thread {
                 MessageSendValue messageSendValue = queue.take();
 
                 if (queue == null) {
-                    return;
+                    continue;
                 }
 
                 //发送消息

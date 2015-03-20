@@ -6,9 +6,9 @@ package com.tongbaotu.searchengine.util;
 public class GlobalConst {
     public static final String CONFIG_PATH = "config/";//路径
 
-    public static final int TYPE_ALLCUSTOMER = 1;//所有客户
+    public static final int TYPE_PRODUCTCUSTOMER = 1;//产品对应客户
 
-    public static final int TYPE_PRODUCTCUSTOMER = 2;//产品对应客户
+    public static final int TYPE_ALLCUSTOMER = 2;//所有客户
 
     public static final int TARGETTYPE_IOS = 1;//IOS
 
